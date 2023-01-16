@@ -1,4 +1,4 @@
-name: Sphinx build & deploy
+name: build & deploy document
 
 on: push
 
