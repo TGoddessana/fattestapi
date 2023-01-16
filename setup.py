@@ -15,7 +15,7 @@ requirements = ['Click>=7.0', ]
 test_requirements = [ ]
 
 setup(
-    author="fullask_rest_framework",
+    author="tgoddessana",
     author_email='twicegoddessana1229@gmail.com',
     python_requires='>=3.6',
     classifiers=[
@@ -31,19 +31,18 @@ setup(
     description="A fully-supported flask extension to build REST API.",
     entry_points={
         'console_scripts': [
-            'fullask_rest_framework=fullask_rest_framework.cli:main',
+            'fullask-admin=fullask_rest_framework.cli:main',
         ],
     },
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
-    keywords='fullask_rest_framework',
-    name='fullask_rest_framework',
+    name='fullask-rest-framework',
     packages=find_packages(include=['fullask_rest_framework', 'fullask_rest_framework.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/tgoddessana/fullask_rest_framework',
+    url='https://github.com/tgoddessana/fullask-rest-framework',
     version='0.1.0',
     zip_safe=False,
 )

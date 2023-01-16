@@ -1,11 +1,11 @@
 =======
-Credits
+Authors
 =======
 
 Development Lead
 ----------------
 
-* fullask_rest_framework <twicegoddessana1229@gmail.com>
+* tgoddessana <twicegoddessana1229@gmail.com>
 
 Contributors
 ------------

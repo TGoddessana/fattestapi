@@ -1,15 +1,12 @@
-Welcome to fullask_rest_framework's documentation!
-======================================
+Welcome to fullask-rest-framework's documentation!
+=====================================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   readme
    installation
    usage
-   modules
-   contributing
    authors
    history
 

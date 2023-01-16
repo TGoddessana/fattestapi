@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install fullask_rest_framework, run this command in your terminal:
+To install fullask-rest-framework, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install fullask_rest_framework
+    $ pip install fullask-rest-framework
 
-This is the preferred method to install fullask_rest_framework, as it will always install the most recent stable release.
+This is the preferred method to install fullask-rest-framework, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for fullask_rest_framework can be downloaded from the `Github repo`_.
+The sources for fullask-rest-framework can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/tgoddessana/fullask_rest_framework
+    $ git clone git://github.com/tgoddessana/fullask-rest-framework
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/tgoddessana/fullask_rest_framework/tarball/master
+    $ curl -OJL https://github.com/tgoddessana/fullask-rest-framework/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/tgoddessana/fullask_rest_framework
-.. _tarball: https://github.com/tgoddessana/fullask_rest_framework/tarball/master
+.. _Github repo: https://github.com/tgoddessana/fullask-rest-framework
+.. _tarball: https://github.com/tgoddessana/fullask-rest-framework/tarball/master

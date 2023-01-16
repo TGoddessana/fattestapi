@@ -19,7 +19,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 import fullask_rest_framework
 
@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'fullask_rest_framework'
-copyright = "2023, fullask_rest_framework"
-author = "fullask_rest_framework"
+copyright = "2023, tgoddessana"
+author = "tgoddessana"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -64,7 +64,7 @@ release = fullask_rest_framework.__version__
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -94,7 +94,7 @@ html_theme = 'alabaster'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
 
 
 # -- Options for HTMLHelp output ---------------------------------------

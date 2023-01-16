@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = fullask_rest_framework
-SOURCEDIR     = .
+SOURCEDIR     = ./docfiles
 BUILDDIR      = _build
 
 # Put it first so that "make" without argument is like "make help".
