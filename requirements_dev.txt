@@ -5,8 +5,9 @@ watchdog
 flake8
 tox
 coverage
-Sphinx
+sphinx
 twine
-Click
+click
 black
-flask
+flask == 2.2.2
+isort
