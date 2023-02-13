@@ -10,7 +10,7 @@ with open("README.md") as readme_file:
 with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
-requirements = ["Click>=7.0", "Flask<=2.2"]
+requirements = ["Click>=7.0", "Flask>=2.2"]
 
 test_requirements = []
 
@@ -30,7 +30,7 @@ setup(
     ],
     description="A fully-supported flask extension to build REST API.",
     entry_points={
-        "console_scripts": ["fullask-admin=fullask_rest_framework.cli:main"],
+        "console_scripts": ["flask=fullask_rest_framework.cli:main"],
     },
     install_requires=requirements,
     license="MIT license",
