@@ -17,7 +17,7 @@ test_requirements = []
 setup(
     author="tgoddessana",
     author_email="twicegoddessana1229@gmail.com",
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
@@ -30,7 +30,7 @@ setup(
     ],
     description="A fully-supported flask extension to build REST API.",
     entry_points={
-        "console_scripts": ["flask=fullask_rest_framework.cli:main"],
+        "console_scripts": ["fullask-manager=fullask_rest_framework.cli:main"],
     },
     install_requires=requirements,
     license="MIT license",
