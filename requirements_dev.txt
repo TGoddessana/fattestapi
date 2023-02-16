@@ -10,4 +10,9 @@ twine
 click
 black
 flask == 2.2.2
+flask-jwt-extended
+flask-migrate
+flask-marshmallow
+flask-smorest
+marshmallow-sqlalchemy
 isort
