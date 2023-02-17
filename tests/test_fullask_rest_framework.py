@@ -6,7 +6,7 @@
 import unittest
 from click.testing import CliRunner
 
-from fullask_rest_framework import fullask_rest_framework
+# from fullask_rest_framework import fullask_rest_framework
 from fullask_rest_framework import cli
 
 
