@@ -5,6 +5,7 @@ watchdog
 tox
 coverage
 sphinx
+sphinx_rtd_theme
 twine
 pre-commit
 
