@@ -7,6 +7,7 @@ Welcome to fullask-rest-framework's documentation!
 
    installation
    usage
+   contributing
    authors
    history
 
