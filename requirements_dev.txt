@@ -2,17 +2,20 @@ pip
 bump2version
 wheel
 watchdog
-flake8
 tox
 coverage
 sphinx
 twine
-click
+pre-commit
+
 black
+flake8
+isort
+
 flask == 2.2.2
 flask-jwt-extended
 flask-migrate
 flask-marshmallow
 flask-smorest
 marshmallow-sqlalchemy
-isort
+
