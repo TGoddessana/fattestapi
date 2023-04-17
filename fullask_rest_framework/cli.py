@@ -27,7 +27,7 @@ def create_project(project_name: str, path: str) -> None:
     project_template_path = Path(
         os.path.abspath(
             os.path.join(
-                ROOT_DIR, "architecture_template/project_template/{{ project_name }}"
+                ROOT_DIR, "createproject_template/project_template/{{ project_name }}"
             )
         )
     )

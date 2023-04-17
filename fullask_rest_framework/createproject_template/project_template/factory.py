@@ -13,7 +13,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask("{{ project_name }}")
-    app.config.from_object("config")
+    app.config.from_object("{{ project_name }}.config")
     initialize_extensions(app)
     register_blueprints(app)
     return app

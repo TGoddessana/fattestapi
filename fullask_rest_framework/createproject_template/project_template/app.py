@@ -1,4 +1,4 @@
-from factory import create_app
+from {{ project_name }}.factory import create_app
 
 app = create_app()
 
