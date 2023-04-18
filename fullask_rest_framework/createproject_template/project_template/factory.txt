@@ -11,6 +11,7 @@ jwt = JWTManager()
 ma = Marshmallow()
 migrate = Migrate()
 
+
 def create_app():
     app = Flask("{{ project_name }}")
     app.config.from_object("{{ project_name }}.config")
