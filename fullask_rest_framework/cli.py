@@ -1,52 +1,19 @@
-import os
-from pathlib import Path
-from jinja2 import Template
-
 import click
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-
-def create_file_from_template(project_path: Path, template_file: Path, **kwargs):
-    """make .fullasktemplate file to .py file."""
-    result_filename = ".".join(os.path.basename(template_file).split(".")[:2])
-    with open(os.path.join(project_path, result_filename), "w") as f:
-        f.write(Template(open(template_file).read()).render(**kwargs))
+from werkzeug.serving import is_running_from_reloader
 
 
-@click.group
-def main():
-    pass
+def show_server_banner(debug, app_import_path):
+    """Show extra startup messages the first time the server is run,
+    ignoring the reloader.
 
+    this overrides original flask.cli's show_server_banner function.
+    """
+    if is_running_from_reloader():
+        return
 
-@main.command("createproject")
-@click.argument("project_name", type=click.STRING, required=True)
-@click.argument("path", type=click.Path(exists=True), default=".", required=True)
-def create_project(project_name: str, path: str) -> None:
-    """Create a new Project Files at this given path and project name."""
-    project_template_path = Path(
-        os.path.abspath(
-            os.path.join(
-                ROOT_DIR, "createproject_template/project_template/{{ project_name }}"
-            )
-        )
-    )
-    path_by_user: Path = Path(os.path.abspath(os.path.join(Path.cwd(), path)))
-    if Path(path).is_dir():
-        project_path = Path(os.path.join(path_by_user, project_name))
-        project_path.mkdir()
-        for template_file in project_template_path.iterdir():
-            create_file_from_template(
-                project_path=project_path,
-                template_file=template_file,
-                project_name=project_name,
-            )
-    else:
-        raise click.BadParameter(
-            f"{path_by_user} is a file, not directory.",
-            param_hint="[PATH]",
-        )
+    if app_import_path is not None:
+        click.echo(f" * Serving Flask project: '{app_import_path}'")
+        click.echo(f" * Loaded blueprints: '{app_import_path}'")
 
-
-if __name__ == "__main__":
-    main()
+    if debug is not None:
+        click.echo(f" * Debug mode: {'on' if debug else 'off'}")
