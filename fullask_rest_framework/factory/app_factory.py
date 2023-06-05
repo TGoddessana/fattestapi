@@ -13,6 +13,7 @@ class BaseApplicationFactory:
     EXTENSION_FILE: Optional[str] = None
     MICRO_APP_CONFIG: Optional[List[Dict[str, str]]] = None
     DOTENV_SETTINGS = {
+        "dotenv_path": "./.env",
         "stream": None,
         "verbose": False,
         "override": False,
