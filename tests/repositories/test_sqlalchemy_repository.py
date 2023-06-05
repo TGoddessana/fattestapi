@@ -2,12 +2,16 @@ from dataclasses import dataclass
 from typing import Optional
 
 import pytest
-from fullask_rest_framework.entities.filtering import FilteringRequest
-from fullask_rest_framework.entities.pagination import PaginationRequest, PaginationResponse
-from fullask_rest_framework.entities.sorting import SortingRequest
-from fullask_rest_framework.repositories.sqlalchemy import SQLAlchemyFullRepository
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
+from fullask_rest_framework.entities.filtering import FilteringRequest
+from fullask_rest_framework.entities.pagination import (
+    PaginationRequest,
+    PaginationResponse,
+)
+from fullask_rest_framework.entities.sorting import SortingRequest
+from fullask_rest_framework.repositories.sqlalchemy import SQLAlchemyFullRepository
 
 ###################
 # pytest fixtures #
