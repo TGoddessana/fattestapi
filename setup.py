@@ -2,7 +2,7 @@
 
 """The setup script."""
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open("README.md") as readme_file:
     readme = readme_file.read()
@@ -19,7 +19,7 @@ setup(
     author_email="twicegoddessana1229@gmail.com",
     python_requires=">=3.8",
     classifiers=[
-        "Development Status :: Pre-Alpha",
+        "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
@@ -35,7 +35,8 @@ setup(
     },
     install_requires=requirements,
     license="MIT license",
-    long_description=readme + "\n\n" + history,
+    long_description="README.md",
+    long_description_content_type="text/markdown",
     include_package_data=True,
     name="fullask-rest-framework",
     packages=find_packages(
