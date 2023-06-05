@@ -7,7 +7,18 @@ from setuptools import find_packages, setup
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
-requirements = ["Click>=7.0", "Flask>=2.2"]
+requirements = [
+    "Click>=7.0",
+    "Flask>=2.2",
+    "flask-jwt-extended",
+    "marshmallow",
+    "marshmallow-sqlalchemy",
+    "flask-sqlalchemy",
+    "flask-marshmallow",
+    "flask-migrate",
+    "flask-smorest",
+    "python-dotenv",
+]
 
 test_requirements = []
 
@@ -32,7 +43,7 @@ setup(
     },
     install_requires=requirements,
     license="MIT license",
-    long_description="README.md",
+    long_description=readme,
     long_description_content_type="text/markdown",
     include_package_data=True,
     name="fullask-rest-framework",
@@ -42,6 +53,6 @@ setup(
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/tgoddessana/fullask-rest-framework",
-    version="0.1.1",
+    version="0.1.2",
     zip_safe=False,
 )
