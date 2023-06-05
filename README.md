@@ -25,10 +25,6 @@
     <br />
     <a href="https://tgoddessana.github.io/fullask-rest-framework/"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="">Report Bug</a>
-    ·
-    <a href="">Request Feature</a>
   </p>
 </div>
 
