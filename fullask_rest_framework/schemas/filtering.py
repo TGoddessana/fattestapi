@@ -1,4 +1,4 @@
-from core.entities.filtering import FilteringRequest
+from fullask_rest_framework.entities.filtering import FilteringRequest
 from marshmallow import Schema, post_load
 
 

@@ -1,5 +1,5 @@
-from core.entities.sorting import SortingRequest
-from core.schemas import fields
+from fullask_rest_framework.entities.sorting import SortingRequest
+from fullask_rest_framework.schemas import fields
 from flask_marshmallow import Schema  # type: ignore[import]
 from marshmallow import post_load
 

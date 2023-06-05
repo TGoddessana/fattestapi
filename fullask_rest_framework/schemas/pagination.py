@@ -1,4 +1,4 @@
-from core.entities.pagination import PaginationRequest, PaginationResponse
+from fullask_rest_framework.entities.pagination import PaginationRequest, PaginationResponse
 from marshmallow import Schema, fields, post_load
 from marshmallow.validate import Range
 
