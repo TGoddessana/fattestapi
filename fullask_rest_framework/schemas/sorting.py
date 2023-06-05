@@ -1,12 +1,15 @@
-from fullask_rest_framework.entities.sorting import SortingRequest
-from fullask_rest_framework.schemas import fields
 from flask_marshmallow import Schema  # type: ignore[import]
 from marshmallow import post_load
+
+from fullask_rest_framework.entities.sorting import SortingRequest
+from fullask_rest_framework.schemas import fields
 
 
 class SortingRequestSchema(Schema):
     sort_by = fields.Sorting(
-        metadata={"description": "정렬 조건입니다. `필드명:정렬조건(asc or desc)` 형식을 준수해야 합니다."}
+        metadata={
+            "description": "The sort condition. It must conform to the format `fieldname:sortcondition (asc or desc)`."
+        }
     )
 
     @post_load

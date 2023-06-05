@@ -1,16 +1,20 @@
-from fullask_rest_framework.entities.pagination import PaginationRequest, PaginationResponse
 from marshmallow import Schema, fields, post_load
 from marshmallow.validate import Range
+
+from fullask_rest_framework.entities.pagination import (
+    PaginationRequest,
+    PaginationResponse,
+)
 
 
 class PaginationRequestSchema(Schema):
     page = fields.Integer(
         validate=Range(min=1),
-        metadata={"description": "조회하고자 하는 페이지 번호입니다."},
+        metadata={"description": "The page number you want to look up."},
     )
     per_page = fields.Integer(
         validate=Range(min=1),
-        metadata={"description": "한 페이지의 아이템 개수입니다."},
+        metadata={"description": "The number of items on a page."},
     )
 
     @post_load
@@ -19,9 +23,9 @@ class PaginationRequestSchema(Schema):
 
 
 class PaginationResponseSchema(Schema):
-    count = fields.Integer(metadata={"description": "전체 아이템 개수"})
-    next_page = fields.Integer(metadata={"description": "다음 페이지 숫자"})
-    previous_page = fields.Integer(metadata={"description": "이전 페이지 숫자"})
+    count = fields.Integer(metadata={"description": "Total number of items"})
+    next_page = fields.Integer(metadata={"description": "Next page number"})
+    previous_page = fields.Integer(metadata={"description": "Previous page number"})
 
     @post_load
     def to_entity(self, data, **kwargs) -> PaginationResponse:
