@@ -42,7 +42,8 @@
 
 ---
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Fullask REST Framework is a framework that makes it easier and faster to build REST APIs.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,23 +119,6 @@ _For more examples, please refer to the [Documentation](https://tgoddessana.gith
 - DOCS : Documentation only changes. this includes "README.md", and "/docs/".
 - REFACTOR : A code change that neither fixes a bug nor adds a feature.
 - DEPLOY : A code change for deploy this package.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!---------------------------------------------------------------------------------------------->
-
-<br/>
-
-## Roadmap
-
----
-
-- [ ] create fully-supported app directories by command line interface
-- [ ] support serialize & deserialize system
-- [ ] support admin page
-
-See the [open issues](https://github.com/tgoddessana/flask-rest-framework/issues) for a full list of proposed features (
-and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
