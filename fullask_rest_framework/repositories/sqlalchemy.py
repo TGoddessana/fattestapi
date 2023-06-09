@@ -205,8 +205,6 @@ def read_by_fields(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
         columns = inspect(self.sqlalchemy_model).columns
-        for column in columns:
-            print(column, column.unique)
         field_name = func.__name__[len("read_by_") :]
         query_result = self.sqlalchemy_model.query.filter_by(
             **{field_name: kwargs[field_name]}
