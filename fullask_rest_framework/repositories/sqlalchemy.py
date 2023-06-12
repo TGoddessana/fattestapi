@@ -204,12 +204,15 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, Generic[T]):
 def read_by_fields(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
-        columns = inspect(self.sqlalchemy_model).columns
-        for column in columns:
-            print(column, column.unique)
         field_name = func.__name__[len("read_by_") :]
+        if field_name in kwargs:
+            field_value = kwargs[field_name]
+        else:
+            if len(args) < 1:
+                raise ValueError(f"{field_name} argument is missing")
+            field_value = args[0]
         query_result = self.sqlalchemy_model.query.filter_by(
-            **{field_name: kwargs[field_name]}
+            **{field_name: field_value}
         ).first()
         if query_result:
             return self._sqlalchemy_model_to_entity(query_result)
