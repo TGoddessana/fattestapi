@@ -31,6 +31,8 @@ class TimeStampedMixin(BaseMixin):
 
 
 class UUIDMixin(BaseMixin):
-    """UUID 필드를 더해주는 믹스인"""
+    """A mixin that adds a UUID field"""
 
-    uuid = db.Column(db.String(36), unique=True, default=str(uuid4()), nullable=False)
+    uuid = db.Column(
+        db.String(36), unique=True, nullable=False, default=lambda: str(uuid4())
+    )
