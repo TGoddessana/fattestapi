@@ -1,13 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Generic, List, Optional
 
-from fullask_rest_framework.entities.filtering import FilteringRequest
-from fullask_rest_framework.entities.pagination import (
-    PaginationRequest,
-    PaginationResponse,
-)
-from fullask_rest_framework.entities.sorting import SortingRequest
 from fullask_rest_framework.repositories.base import BaseRepository, T
+from fullask_rest_framework.vo.filtering import FilteringRequest
+from fullask_rest_framework.vo.pagination import PaginationRequest, PaginationResponse
+from fullask_rest_framework.vo.sorting import SortingRequest
 
 
 class CRUDRepositoryABC(BaseRepository, ABC, Generic[T]):
