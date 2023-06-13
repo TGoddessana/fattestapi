@@ -9,8 +9,8 @@ from flask_smorest import Api
 class BaseApplicationFactory:
     FLASK_APP_NAME: Optional[str] = None
     APP_BASE_DIR: Optional[str] = None
-    CONFIG_FILE: Optional[str] = None
-    EXTENSION_FILE: Optional[str] = None
+    CONFIG_MODULE: Optional[str] = None
+    EXTENSION_MODULE: Optional[str] = None
     MICRO_APP_CONFIG: Optional[List[Dict[str, str]]] = None
     DOTENV_SETTINGS = {
         "dotenv_path": "./.env",
@@ -65,8 +65,8 @@ class BaseApplicationFactory:
 
     @classmethod
     def _load_config(cls, flask_app: Flask):
-        if cls.CONFIG_FILE:
-            flask_app.config.from_object(importlib.import_module(cls.CONFIG_FILE))
+        if cls.CONFIG_MODULE:
+            flask_app.config.from_object(importlib.import_module(cls.CONFIG_MODULE))
         else:
             pass
 
@@ -76,7 +76,7 @@ class BaseApplicationFactory:
         configure third-party extensions, with `EXTENSION_FILE`.
         """
 
-        extensions = importlib.import_module(cls.EXTENSION_FILE)
+        extensions = cls.get_extensions()
         extension_vars = [
             extension_var
             for extension_var in dir(extensions)
@@ -111,3 +111,7 @@ class BaseApplicationFactory:
     def _setup_di_container(cls, micro_app_container):
         """wiring the DI Container."""
         micro_app_container.wire(packages=[cls.APP_BASE_DIR])
+
+    @classmethod
+    def get_extensions(cls):
+        return importlib.import_module(cls.EXTENSION_MODULE)
