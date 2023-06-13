@@ -19,6 +19,7 @@ requirements = [
     "flask-smorest",
     "flask-cors",
     "python-dotenv",
+    "dependency-injector",
 ]
 
 test_requirements = []
@@ -54,6 +55,6 @@ setup(
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/tgoddessana/fullask-rest-framework",
-    version="0.1.6",
+    version="0.1.7",
     zip_safe=False,
 )
