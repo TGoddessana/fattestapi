@@ -1,10 +1,8 @@
 from marshmallow import Schema, fields, post_load
 from marshmallow.validate import Range
 
-from fullask_rest_framework.entities.pagination import (
-    PaginationRequest,
-    PaginationResponse,
-)
+from fullask_rest_framework.vo.pagination import (PaginationRequest,
+                                                  PaginationResponse)
 
 
 class PaginationRequestSchema(Schema):
