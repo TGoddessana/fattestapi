@@ -8,11 +8,8 @@ with open("README.md") as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    "Click>=7.0",
-    "Flask>=2.2",
+    "Flask",
     "flask-jwt-extended",
-    "marshmallow",
-    "marshmallow-sqlalchemy",
     "flask-sqlalchemy",
     "flask-marshmallow",
     "flask-migrate",
@@ -20,6 +17,8 @@ requirements = [
     "flask-cors",
     "python-dotenv",
     "dependency-injector",
+    "marshmallow",
+    "marshmallow-sqlalchemy",
 ]
 
 test_requirements = []
