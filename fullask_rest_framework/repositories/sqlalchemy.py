@@ -1,18 +1,15 @@
 from functools import wraps
-from typing import Generic, List, Optional
+from typing import Generic, List, Optional, Type
 
 from flask_marshmallow.sqla import SQLAlchemyAutoSchema  # type: ignore[import]
 from flask_sqlalchemy.query import Query
 from sqlalchemy import inspect, select
 
-from fullask_rest_framework.entities.filtering import FilteringRequest
-from fullask_rest_framework.entities.pagination import (
-    PaginationRequest,
-    PaginationResponse,
-)
-from fullask_rest_framework.entities.sorting import SortingRequest
 from fullask_rest_framework.repositories.base import T
 from fullask_rest_framework.repositories.crud import CRUDRepositoryABC
+from fullask_rest_framework.vo.filtering import FilteringRequest
+from fullask_rest_framework.vo.pagination import PaginationRequest, PaginationResponse
+from fullask_rest_framework.vo.sorting import SortingRequest
 
 
 class SQLAlchemyFullRepository(CRUDRepositoryABC, Generic[T]):
@@ -21,22 +18,11 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, Generic[T]):
     this implementation has dependency with flask-sqlalchemy's SQLAlchemy object.
     """
 
-    def __init__(self, entity, db, sqlalchemy_model):
-        """
-        :param db: flask-sqlalchemy.SQLAlchemy
-        :param sqlalchemy_model: the SQLAlchemy model
-        """
+    ENTITY_CLS: Type[T]
+
+    def __init__(self, db):
         self.db = db
-        self.sqlalchemy_model = sqlalchemy_model
-        super().__init__(entity=entity)
-        assert set(self.entity.__annotations__.keys()) == set(
-            [column.name for column in self.sqlalchemy_model.__table__.columns]
-        ), (
-            "sqlalchemy model fields not match entity fields."
-            f"{self.entity.__annotations__.keys()} "
-            f"!= "
-            f"{[column.name for column in self.sqlalchemy_model.__table__.columns]}"
-        )
+        self.sqlalchemy_model = self._configure_entity()
 
     def save(self, entity: T) -> T:
         if hasattr(entity, "id") and entity.id:
@@ -176,14 +162,14 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, Generic[T]):
         if len(sqlalchemy_model_pk_names) == 1:
             instance_dict = sqlalchemy_instance.__dict__
             instance_dict.pop("_sa_instance_state")
-            return self.entity(**instance_dict)
+            return self.ENTITY_CLS(**instance_dict)
         else:
             raise ValueError("multi-pk case is not supported in current version.")
 
     def _entity_to_sqlalchemy_model(self, entity):
         assert isinstance(
-            entity, self.entity
-        ), f"{entity} is not instance of {self.entity}"
+            entity, self.ENTITY_CLS
+        ), f"{entity} is not instance of {self.ENTITY_CLS}"
         return self.sqlalchemy_model(**self._get_sqlalchemy_schema().dump(entity))
 
     def _get_sqlalchemy_schema(self) -> SQLAlchemyAutoSchema:
@@ -199,6 +185,23 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, Generic[T]):
         for field_name, field_value in entity.__dict__.items():
             if field_name != "id":
                 setattr(model_instance, field_name, field_value)
+
+    def _configure_entity(self) -> Type[T]:
+        """
+        This method will find if there is a SQLAlchemy model class defined based on the entity class name.
+
+        The rules to look for are as follows:
+        {entity class name - "Entity"} + "Model"
+
+        For example, if the entity is named "CarEntity", the method will try to find the "CarModel" class.
+        """
+        models = {
+            mapper.class_.__name__: mapper.class_
+            for mapper in self.db.Model.registry.mappers
+        }
+        for model_name, mapper_class in models.items():
+            if model_name == self.ENTITY_CLS.__name__.replace("Entity", "") + "Model":
+                return mapper_class
 
 
 def read_by_fields(func):
