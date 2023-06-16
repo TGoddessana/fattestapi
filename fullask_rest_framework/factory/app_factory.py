@@ -6,6 +6,7 @@ from dependency_injector.containers import DynamicContainer
 from dotenv import load_dotenv
 from flask import Flask
 from flask_smorest import Api
+from flask_sqlalchemy import SQLAlchemy
 
 from fullask_rest_framework.factory.exceptions import ConfigNotSetError
 
@@ -103,6 +104,8 @@ class BaseApplicationFactory:
         ]
         for var in extension_vars:
             getattr(extensions, var).init_app(flask_app)
+            if isinstance(var, SQLAlchemy):
+                var.create_all()
 
     @classmethod
     def _register_micro_apps(cls, smorest_api: Api) -> None:
