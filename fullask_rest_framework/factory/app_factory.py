@@ -103,9 +103,11 @@ class BaseApplicationFactory:
             and not callable(getattr(extensions, extension_var))
         ]
         for var in extension_vars:
-            getattr(extensions, var).init_app(flask_app)
-            if isinstance(var, SQLAlchemy):
-                var.create_all()
+            extension_instance = getattr(extensions, var)
+            extension_instance.init_app(flask_app)
+            if isinstance(extension_instance, SQLAlchemy):
+                with flask_app.app_context():
+                    extension_instance.create_all()
 
     @classmethod
     def _register_micro_apps(cls, smorest_api: Api) -> None:
