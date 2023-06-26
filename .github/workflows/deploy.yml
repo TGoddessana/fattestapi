@@ -22,7 +22,6 @@ jobs:
         steps:
             -   uses: actions/checkout@v3.1.0
             -   uses: actions/create-release@v1
-                run: echo v${{ steps.extract_version_name.output.version }}
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 with:
