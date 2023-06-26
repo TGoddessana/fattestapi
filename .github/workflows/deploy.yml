@@ -25,7 +25,8 @@ jobs:
                 id: extract_version_name
                 run: echo "${{ github.ref }}" | awk -F"/" '{print $3}'
             -   name: debug github version
-                run: echo v${{ steps.extract_version_name.output }}
+                run: echo "##[set-output name=version;]$(echo v${{ steps.extract_version_name.output }})"
+#                run: echo v${{ steps.extract_version_name.output }}
 #            -   name: Create GitHub Release
 #                uses: actions/create-release@v1
 #                env:
