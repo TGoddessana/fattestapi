@@ -3,7 +3,7 @@ import inspect
 from types import ModuleType
 from typing import Any, Dict, List, Optional
 
-from dependency_injector.containers import DynamicContainer
+from dependency_injector.containers import Container
 from dotenv import load_dotenv
 from flask import Flask
 from flask_smorest import Api
@@ -136,11 +136,11 @@ class BaseApplicationFactory:
                 )
                 # get the microapp container.
                 cls._setup_di_container(
-                    micro_app_container=micro_app.MICROAPP_CONTAINER
+                    micro_app_container=micro_app.microapp_container
                 )
 
     @classmethod
-    def _setup_di_container(cls, micro_app_container: DynamicContainer) -> None:
+    def _setup_di_container(cls, micro_app_container: Container) -> None:
         """wiring the DI Container."""
         micro_app_container.wire(packages=[cls.APP_BASE_DIR])
 
