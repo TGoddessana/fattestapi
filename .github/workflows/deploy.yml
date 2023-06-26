@@ -14,18 +14,21 @@ jobs:
             -   run: pip install twine
             -   run: python setup.py sdist bdist_wheel
             -   run: twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
-    build:
+    github_release:
+        name: Create GitHub Release
         runs-on: ubuntu-latest
         steps:
-            -   name: Get version from tag
             -   uses: actions/checkout@v2
-                run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
-                id: extract_version_name
-            -   name: Create release on Github
+                run: |
+                    echo "::set-env name=VERSION::$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
+            -   name: Get commit messages
+                run: |
+                    echo "::set-env name=COMMITS::$(git log --pretty=format:'- %s' ${{ github.event.before }}..${{ github.event.after }})"
+            -   name: Create GitHub Release
                 uses: actions/create-release@v1
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 with:
-                    tag_name: ${{ steps.extract_version_name.outputs.version }}
-                    release_name: ${{ steps.extract_version_name.outputs.version }}
-                    body: $(git log --pretty=format:"- %s" ${{ github.event.before }}..${{ github.event.after }})
+                    tag_name: ${{ env.VERSION }}
+                    release_name: ${{ env.VERSION }}
+                    body: ${{ env.COMMITS }}
