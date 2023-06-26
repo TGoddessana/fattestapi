@@ -16,27 +16,26 @@ jobs:
             -   run: pip install twine
             -   run: python setup.py sdist bdist_wheel
             -   run: twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
-    jobs:
-        debug:
-            name: Debug
-            runs-on: ubuntu-latest
-            steps:
-                -   name: Display GitHub Ref
-                    run:
-                        echo "GitHub Ref: ${{ github.ref }}"
-    github_release:
-        name: Create GitHub Release
+    debug:
+        name: Debug
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v3.1.0
-            -   name: Extract version name
-                id: extract_version_name
-                run: echo "${{ github.ref }}"
-            -   name: Create GitHub Release
-                uses: actions/create-release@v1
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                with:
-                    tag_name: v${{ steps.extract_version_name.outputs.version }}
-                    release_name: v${{ steps.extract_version_name.outputs.version }}
-                    body: $(git log --pretty=format:"- %s" ${{ github.event.before }}..${{ github.event.after }})
+            -   name: Display GitHub Ref
+                run:
+                    echo "GitHub Ref: ${{ github.ref }}"
+#    github_release:
+#        name: Create GitHub Release
+#        runs-on: ubuntu-latest
+#        steps:
+#            -   uses: actions/checkout@v3.1.0
+#            -   name: Extract version name
+#                id: extract_version_name
+#                run: echo "${{ github.ref }}"
+#            -   name: Create GitHub Release
+#                uses: actions/create-release@v1
+#                env:
+#                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#                with:
+#                    tag_name: v${{ steps.extract_version_name.outputs.version }}
+#                    release_name: v${{ steps.extract_version_name.outputs.version }}
+#                    body: $(git log --pretty=format:"- %s" ${{ github.event.before }}..${{ github.event.after }})
