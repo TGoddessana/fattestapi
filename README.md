@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/tgoddessana/flask-rest-framework">
-    <img src="/artworks/frf-logo.png.png" style="width:75%";>
+    <img src="docs/frf-logo.png" style="width:75%";>
   </a>
 
 <h3 align="center">Fullask-REST-Framework</h3>
