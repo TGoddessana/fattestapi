@@ -25,5 +25,5 @@ jobs:
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 with:
-                    tag_name: ${{ "${{ github.ref }}" | awk -F"/" '{print $3}' }}
-                    release_name: ${{ "${{ github.ref }}" | awk -F"/" '{print $3}' }}
+                    tag_name: ${{ shellRun('echo "${{ github.ref }}" | awk -F"/" "{print $3}"') }}
+                    release_name: ${{ shellRun('echo "${{ github.ref }}" | awk -F"/" "{print $3}"') }}
