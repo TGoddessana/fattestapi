@@ -1,4 +1,5 @@
 import importlib
+import inspect
 from types import ModuleType
 from typing import Any, Dict, List, Optional
 
@@ -8,6 +9,7 @@ from flask import Flask
 from flask_smorest import Api
 
 from fullask_rest_framework.factory.exceptions import ConfigNotSetError
+from fullask_rest_framework.factory.microapp import MicroApp
 
 
 class BaseApplicationFactory:
@@ -116,15 +118,23 @@ class BaseApplicationFactory:
             return
         for micro_app_information in cls.MICRO_APP_CONFIG:
             for app_package_string, url_prefix in micro_app_information.items():
-                app_package_module = importlib.import_module(app_package_string)
+                micro_app = [
+                    cls
+                    for name, cls in importlib.import_module(
+                        app_package_string
+                    ).__dict__.items()
+                    if inspect.isclass(cls)
+                    and issubclass(cls, MicroApp)
+                    and cls is not MicroApp
+                ][0]
                 # Register Blueprint.
                 smorest_api.register_blueprint(
-                    app_package_module.BLUEPRINT,
+                    micro_app.blueprint,
                     url_prefix=url_prefix,
                 )
                 # get the microapp container.
                 cls._setup_di_container(
-                    micro_app_container=app_package_module.MICROAPP_CONTAINER
+                    micro_app_container=micro_app.MICROAPP_CONTAINER
                 )
 
     @classmethod
