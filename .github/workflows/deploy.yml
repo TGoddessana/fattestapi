@@ -2,6 +2,8 @@ name: build
 on:
     push:
     pull_request:
+        branches:
+            - '*'
 jobs:
     pypi_release:
         name: PyPI release
@@ -21,7 +23,7 @@ jobs:
             -   uses: actions/checkout@v3.1.0
             -   name: Extract version name
                 id: extract_version_name
-                run: echo "${{ github.ref }}" | sed 's/refs\/tags\/v//'
+                run: echo "${{ github.ref }}" | xargs basename
             -   name: Create GitHub Release
                 uses: actions/create-release@v1
                 env:
