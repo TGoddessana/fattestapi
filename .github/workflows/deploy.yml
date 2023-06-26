@@ -16,6 +16,14 @@ jobs:
             -   run: pip install twine
             -   run: python setup.py sdist bdist_wheel
             -   run: twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
+    jobs:
+        debug:
+            name: Debug
+            runs-on: ubuntu-latest
+            steps:
+                -   name: Display GitHub Ref
+                    run:
+                        echo "GitHub Ref: ${{ github.ref }}"
     github_release:
         name: Create GitHub Release
         runs-on: ubuntu-latest
