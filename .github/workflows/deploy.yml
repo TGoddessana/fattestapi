@@ -20,7 +20,8 @@ jobs:
         name: Debug
         runs-on: ubuntu-latest
         steps:
-            -   run:
+            -   name: Debug
+                run:
                     echo "GitHub Ref: ${{ github.ref }}"
 #    github_release:
 #        name: Create GitHub Release
