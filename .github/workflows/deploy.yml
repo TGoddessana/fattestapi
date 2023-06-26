@@ -27,6 +27,6 @@ jobs:
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 with:
-                    tag_name: ${{ steps.extract_version_name.outputs.version }}
+                    tag_name: foo
                     release_name: ${{ steps.extract_version_name.outputs.version }}
                     body: $(git log --pretty=format:"- %s" ${{ github.event.before }}..${{ github.event.after }})
