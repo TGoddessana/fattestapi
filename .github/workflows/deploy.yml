@@ -29,4 +29,4 @@ jobs:
                 with:
                     tag_name: ${{ steps.extract_version_name.outputs.version }}
                     release_name: ${{ steps.extract_version_name.outputs.version }}
-                    body: ${{git log --pretty=format:"- %s" ${{ github.event.before }}..${{ github.event.after }}}}
+                    body: $(git log --pretty=format:"- %s" ${{ github.event.before }}..${{ github.event.after }})
