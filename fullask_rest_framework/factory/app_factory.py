@@ -130,10 +130,8 @@ class BaseApplicationFactory:
                     None,
                 )
                 # Register Blueprint.
-                smorest_api.register_blueprint(
-                    micro_app.blueprint,
-                    url_prefix=url_prefix,
-                )
+                for blueprint in micro_app.blueprints:
+                    smorest_api.register_blueprint(blueprint, url_prefix=url_prefix)
                 # get the microapp container.
                 cls._setup_di_container(
                     micro_app_container=micro_app.microapp_container

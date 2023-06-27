@@ -5,5 +5,5 @@ from flask_smorest import Blueprint
 
 
 class MicroApp:
-    blueprint: Union[Sequence[Blueprint], Blueprint]
+    blueprints: Sequence[Blueprint]
     microapp_container: Container
