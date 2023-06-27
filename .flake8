@@ -1,6 +1,0 @@
-[flake8]
-exclude =
-    docs
-    .tox
-max-line-length =
-    89
