@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-from jinja2 import TemplateNotFound
 
 admin_bp = Blueprint("AdminPage", __name__, template_folder="./templates")
 

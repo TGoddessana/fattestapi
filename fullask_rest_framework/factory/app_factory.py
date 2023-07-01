@@ -71,8 +71,9 @@ class BaseApplicationFactory:
         # make sure that the CONFIG_MAPPING is set.
         if not cls.CONFIG_MAPPING:
             raise ConfigNotSetError(
-                "Config is not set appropriately. Make sure you have assigned the CONFIG class variable"
-                "appropriately in your application factory class."
+                "Config is not set appropriately. Make sure you have assigned"
+                "the CONFIG class variable appropriately in "
+                "your application factory class."
             )
         # make sure that the environment variable is in the CONFIG_MAPPING.keys().
         if environment not in cls.CONFIG_MAPPING.keys():
@@ -119,7 +120,8 @@ class BaseApplicationFactory:
         """
         if not cls.MICRO_APP_CONFIG:
             return warnings.warn(
-                "No routing is currently set for the application, please set it via MICRO_APP_CONFIG."
+                "No routing is currently set for the application, "
+                "please set it via MICRO_APP_CONFIG."
             )
         for micro_app_information in cls.MICRO_APP_CONFIG:
             for app_package_string, url_prefix in micro_app_information.items():

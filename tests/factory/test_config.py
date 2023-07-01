@@ -6,7 +6,6 @@ import json
 import os
 import tempfile
 
-import pytest
 
 from fullask_rest_framework.factory.app_factory import BaseApplicationFactory
 

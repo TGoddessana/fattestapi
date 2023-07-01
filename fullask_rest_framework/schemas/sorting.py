@@ -8,7 +8,8 @@ from fullask_rest_framework.vo.sorting import SortingRequest
 class SortingRequestSchema(Schema):
     sort_by = fields.Sorting(
         metadata={
-            "description": "The sort condition. It must conform to the format `fieldname:sortcondition (asc or desc)`."
+            "description": "The sort condition. It must conform to the format"
+            "`fieldname:sortcondition (asc or desc)`."
         }
     )
 

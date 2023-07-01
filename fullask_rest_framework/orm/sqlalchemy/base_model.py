@@ -1,4 +1,4 @@
-from sqlalchemy import Identity, Sequence
+from sqlalchemy import Sequence
 
 from fullask_rest_framework.factory.extensions import db
 

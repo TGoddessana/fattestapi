@@ -5,7 +5,8 @@ from fullask_rest_framework.factory.extensions import db
 
 class BaseMixin:
     """
-    The parent mixin of all mixins. Prevents mixins from being used as classes themselves.
+    The parent mixin of all mixins. Prevents mixins
+    from being used as classes themselves.
     """
 
     def __init__(self, *args, **kwargs) -> None:

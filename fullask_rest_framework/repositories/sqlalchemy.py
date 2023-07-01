@@ -8,7 +8,8 @@ from sqlalchemy import inspect, select
 from fullask_rest_framework.repositories.base import T
 from fullask_rest_framework.repositories.crud import CRUDRepositoryABC
 from fullask_rest_framework.vo.filtering import FilteringRequest
-from fullask_rest_framework.vo.pagination import PaginationRequest, PaginationResponse
+from fullask_rest_framework.vo.pagination import (PaginationRequest,
+                                                  PaginationResponse)
 from fullask_rest_framework.vo.sorting import SortingRequest
 
 
@@ -188,12 +189,14 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, Generic[T]):
 
     def _configure_entity(self) -> Type[T]:
         """
-        This method will find if there is a SQLAlchemy model class defined based on the entity class name.
+        This method will find if there is a SQLAlchemy model class
+        defined based on the entity class name.
 
         The rules to look for are as follows:
         {entity class name - "Entity"} + "Model"
 
-        For example, if the entity is named "CarEntity", the method will try to find the "CarModel" class.
+        For example, if the entity is named "CarEntity",
+        this method will try to find the "CarModel" class.
         """
         models = {
             mapper.class_.__name__: mapper.class_

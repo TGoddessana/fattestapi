@@ -1,4 +1,4 @@
-from typing import Sequence, Union
+from typing import Sequence
 
 from dependency_injector.containers import Container
 from flask_smorest import Blueprint
