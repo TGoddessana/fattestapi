@@ -1,13 +1,15 @@
 import importlib
 import inspect
+import warnings
 from types import ModuleType
 from typing import Any, Dict, List, Optional
-import warnings
+
 from dependency_injector.containers import Container
 from dotenv import load_dotenv
 from flask import Flask
 from flask_smorest import Api
 
+from fullask_rest_framework.contrib.admin.views import admin_bp
 from fullask_rest_framework.factory.exceptions import ConfigNotSetError
 from fullask_rest_framework.factory.microapp import MicroApp
 
@@ -33,6 +35,8 @@ class BaseApplicationFactory:
         cls._configure_extensions(flask_app=flask_app)
         # register micro apps. this also does the Dependency Injection.
         cls._register_micro_apps(smorest_api)
+        # setup admin page.
+        cls._configure_admin(flask_app=flask_app)
         return flask_app
 
     @classmethod
@@ -146,6 +150,10 @@ class BaseApplicationFactory:
     ) -> None:
         """wiring the DI Container."""
         micro_app_container.wire(packages=[app_package_string])
+
+    @classmethod
+    def _configure_admin(cls, flask_app: Flask):
+        flask_app.register_blueprint(admin_bp)
 
     @classmethod
     def get_extensions(cls) -> ModuleType:
