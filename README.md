@@ -39,53 +39,17 @@
 
 Fullask REST Framework is a framework that makes it easier and faster to build REST APIs.
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Built With
-
-![Flask][Flask]
-![Python][Python]
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!---------------------------------------------------------------------------------------------->
-
-<br/>
-
-## Requirements
-
----
-
-- python 3.8+
-- flask 2.0 +
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!---------------------------------------------------------------------------------------------->
-
-<br/>
-
 ## Getting Started
 
 ---
 
 ### Installation
 
-
 install using pip command.
 
    ```
    pip install fullask-rest-framework
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!---------------------------------------------------------------------------------------------->
 
@@ -99,27 +63,11 @@ install using pip command.
 
 _For more examples, please refer to the [Documentation](https://tgoddessana.github.io/fullask-rest-framework/)_
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!---------------------------------------------------------------------------------------------->
-
-<br/>
-
-## Commit convention
-
----
-
-- FEAT : A new feature.
-- FIX : A bug fix.
-- TYPO : A typo fix.
-- DOCS : Documentation only changes. this includes "README.md", and "/docs/".
-- REFACTOR : A code change that neither fixes a bug nor adds a feature.
-- DEPLOY : A code change for deploy this package.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!---------------------------------------------------------------------------------------------->
+
 
 <br/>
 
@@ -127,9 +75,9 @@ _For more examples, please refer to the [Documentation](https://tgoddessana.gith
 
 ---
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!---------------------------------------------------------------------------------------------->
 
@@ -140,12 +88,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ---
 
 - Email: twicegoddessana1229@gmail.com
-- Project Link: [https://github.com/tgoddessana/flask-rest-framework](https://github.com/tgoddessana/flask-rest-framework)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
+- Project
+  Link: [https://github.com/tgoddessana/flask-rest-framework](https://github.com/tgoddessana/flask-rest-framework)
 
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
