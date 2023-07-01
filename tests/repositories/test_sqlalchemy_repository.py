@@ -23,17 +23,10 @@ class UserModel(db.Model):  # type: ignore[name-defined]
     name = db.Column(db.String(50))
 
 
-@dataclass
-class UserEntity:
-    name: str
-
-    id: Optional[int] = None
-
-
 @pytest.fixture
 def user_repository():
     class UserRepository(SQLAlchemyFullRepository):
-        ENTITY_CLS = UserEntity
+        pass
 
     yield UserRepository(db=db)
 
@@ -61,7 +54,7 @@ def test_save_success_and_return_entity(test_app, user_repository):
     """
     save() 메서드가 저장을 잘 수행하는지를 테스트합니다.
     """
-    user_fullask = UserEntity(name="mr_fullask")
+    user_fullask = UserModel(name="mr_fullask")
     with test_app.test_request_context():
         user_entity = user_repository.save(user_fullask)
         assert UserModel.query.count() == 1
@@ -86,9 +79,9 @@ def test_save_all_success_and_return_entities(test_app, user_repository):
     """
     save_all() 메서드가 저장을 잘 수행하는지를 테스트합니다.
     """
-    user_fullask = UserEntity(name="mr_fullask")
-    user_django = UserEntity(name="mr_django")
-    user_fastapi = UserEntity(name="mr_fastapi")
+    user_fullask = UserModel(name="mr_fullask")
+    user_django = UserModel(name="mr_django")
+    user_fastapi = UserModel(name="mr_fastapi")
     with test_app.test_request_context():
         user_entities = user_repository.save_all(
             [user_fullask, user_django, user_fastapi]
@@ -97,15 +90,15 @@ def test_save_all_success_and_return_entities(test_app, user_repository):
         assert isinstance(user_entities, list)
         assert user_entities[0].id == 1
         assert user_entities[0].name == "mr_fullask" and isinstance(
-            user_entities[0], UserEntity
+            user_entities[0], UserModel
         )
         assert user_entities[1].id == 2
         assert user_entities[1].name == "mr_django" and isinstance(
-            user_entities[0], UserEntity
+            user_entities[0], UserModel
         )
         assert user_entities[2].id == 3
         assert user_entities[2].name == "mr_fastapi" and isinstance(
-            user_entities[0], UserEntity
+            user_entities[0], UserModel
         )
 
 
@@ -122,7 +115,7 @@ def test_read_by_id_should_return_none(test_app, user_repository):
 def test_read_by_id_should_return_user_entity(test_app, user_repository):
     """
     데이터베이스 테이블에 사용자 정보가 적절하게 저장되었다면,
-    read_by_id 는 UserEntity 객체를 반환해야 합니다.
+    read_by_id 는 UserModel 객체를 반환해야 합니다.
     """
     # 데이터베이스에 사용자를 저장합니다.
     with test_app.test_request_context():
@@ -132,8 +125,8 @@ def test_read_by_id_should_return_user_entity(test_app, user_repository):
         # repository 를 이용해서 확인합니다.
         user_fullask = user_repository.read_by_id(1)
         user_django = user_repository.read_by_id(2)
-    assert user_fullask.name == "mr_fullask" and isinstance(user_fullask, UserEntity)
-    assert user_django.name == "mr_django" and isinstance(user_fullask, UserEntity)
+    assert user_fullask.name == "mr_fullask" and isinstance(user_fullask, UserModel)
+    assert user_django.name == "mr_django" and isinstance(user_fullask, UserModel)
 
 
 def test_is_exists_by_id_should_return_false(test_app, user_repository):
@@ -184,10 +177,10 @@ def test_read_all_without_sorting_and_filtering_success(test_app, user_repositor
         assert isinstance(read_all_result, list)
         assert len(read_all_result) == 2
         assert read_all_result[0].name == "mr_fullask" and isinstance(
-            read_all_result[0], UserEntity
+            read_all_result[0], UserModel
         )
         assert read_all_result[1].name == "mr_django" and isinstance(
-            read_all_result[1], UserEntity
+            read_all_result[1], UserModel
         )
 
 
@@ -313,10 +306,10 @@ def test_read_all_by_ids(test_app, user_repository):
         assert isinstance(read_all_result, list)
         assert len(read_all_result) == 2
         assert read_all_result[0].name == "mr_fullask" and isinstance(
-            read_all_result[0], UserEntity
+            read_all_result[0], UserModel
         )
         assert read_all_result[1].name == "mr_spring" and isinstance(
-            read_all_result[1], UserEntity
+            read_all_result[1], UserModel
         )
 
 
@@ -372,7 +365,7 @@ def test_delete_by_entity_should_success(test_app, user_repository):
         assert db.session.query(UserModel).count() == 1
 
         # entity 생성
-        user = UserEntity(id=1, name="mr_fullask")
+        user = UserModel(id=1, name="mr_fullask")
 
         # delete() 메서드 호출, 인자로는 entity 객체가 들어옴
         user_repository.delete(entity=user)
@@ -386,7 +379,7 @@ def test_delete_by_invalid_entity_should_fail(test_app, user_repository):
     """
     with test_app.test_request_context():
         # 유효하지 않은 entity 생성
-        invalid_user_entity = UserEntity(id=2, name="mr_fullask")
+        invalid_user_entity = UserModel(id=2, name="mr_fullask")
 
         with pytest.raises(ValueError):
             user_repository.delete(invalid_user_entity)
@@ -406,7 +399,7 @@ def test_delete_by_valid_entity_should_success(test_app, user_repository):
         assert db.session.query(UserModel).count() == 1
 
         # 유효한 entity 생성
-        valid_user_entity = UserEntity(id=1, name="mr_fullask")
+        valid_user_entity = UserModel(id=1, name="mr_fullask")
 
         user_repository.delete(valid_user_entity)
 
