@@ -6,6 +6,17 @@ on:
             - main
 
 jobs:
+    pypi_release:
+        name: PyPI release
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3.1.0
+            -   uses: actions/setup-python@v4.3.0
+            -   run: python -m pip install --upgrade pip twine
+            -   run: pip install flit
+            -   run: flit build
+            -   run: twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
+
     setup-build-deploy:
         name: Setup, Build, and Deploy
         runs-on: ubuntu-latest
