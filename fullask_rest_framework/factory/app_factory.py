@@ -15,7 +15,7 @@ from fullask_rest_framework.factory.microapp import MicroApp
 class BaseApplicationFactory:
     FLASK_APP_NAME: Optional[str] = None
     CONFIG_MAPPING: Optional[dict[str, Any]] = None
-    EXTENSION_MODULE: Optional[str] = None
+    EXTENSION_MODULE: str = "fullask_rest_framework.factory.extensions"
     MICRO_APP_CONFIG: Optional[List[Dict[str, str]]] = None
     DOTENV_SETTINGS: Optional[dict] = None
 
@@ -146,6 +146,4 @@ class BaseApplicationFactory:
 
     @classmethod
     def get_extensions(cls) -> ModuleType:
-        if cls.EXTENSION_MODULE is not None:
-            return importlib.import_module(cls.EXTENSION_MODULE)
-        return importlib.import_module("fullask_rest_framework.factory.extensions")
+        return importlib.import_module(cls.EXTENSION_MODULE)
