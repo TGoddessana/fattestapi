@@ -14,7 +14,6 @@ from fullask_rest_framework.factory.microapp import MicroApp
 
 class BaseApplicationFactory:
     FLASK_APP_NAME: Optional[str] = None
-    APP_BASE_DIR: Optional[str] = None
     CONFIG_MAPPING: Optional[dict[str, Any]] = None
     EXTENSION_MODULE: Optional[str] = None
     MICRO_APP_CONFIG: Optional[List[Dict[str, str]]] = None
@@ -132,15 +131,18 @@ class BaseApplicationFactory:
                 # Register Blueprint.
                 for blueprint in micro_app.blueprints:
                     smorest_api.register_blueprint(blueprint, url_prefix=url_prefix)
-                # get the microapp container.
+                # get the microapp container and wire it.
                 cls._setup_di_container(
-                    micro_app_container=micro_app.microapp_container
+                    micro_app_container=micro_app.microapp_container,
+                    app_package_string=app_package_string,
                 )
 
     @classmethod
-    def _setup_di_container(cls, micro_app_container: Container) -> None:
+    def _setup_di_container(
+        cls, micro_app_container: Container, app_package_string
+    ) -> None:
         """wiring the DI Container."""
-        micro_app_container.wire(packages=[cls.APP_BASE_DIR])
+        micro_app_container.wire(packages=[app_package_string])
 
     @classmethod
     def get_extensions(cls) -> ModuleType:
