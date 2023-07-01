@@ -2,7 +2,7 @@ import importlib
 import inspect
 from types import ModuleType
 from typing import Any, Dict, List, Optional
-
+import warnings
 from dependency_injector.containers import Container
 from dotenv import load_dotenv
 from flask import Flask
@@ -114,14 +114,17 @@ class BaseApplicationFactory:
         with dependency_injector's DynamicContainer.
         """
         if not cls.MICRO_APP_CONFIG:
-            return
+            return warnings.warn(
+                "No routing is currently set for the application, please set it via MICRO_APP_CONFIG."
+            )
         for micro_app_information in cls.MICRO_APP_CONFIG:
             for app_package_string, url_prefix in micro_app_information.items():
-                app_module = importlib.import_module(app_package_string)
                 micro_app = next(
                     (
                         cls
-                        for name, cls in app_module.__dict__.items()
+                        for name, cls in importlib.import_module(
+                            app_package_string
+                        ).__dict__.items()
                         if inspect.isclass(cls)
                         and issubclass(cls, MicroApp)
                         and cls is not MicroApp
