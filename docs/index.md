@@ -1,46 +1,40 @@
-----------------------------
-title: The Sphinx Book Theme
-----------------------------
+-------------------------------------------
+title: Fullask-REST-framework Documentation
+-------------------------------------------
 
 ```{image} ./_static/frf-logo.png
 :width: 500px
 ```
 
-# A fully-supported flask extension to build REST APIs.
+# Fullask-REST-framework Documentation
+**fully-supported flask extension to build REST APIs.**
 
-::::{grid}
-:reverse:
-:gutter: 2 1 1 1
-:margin: 4 4 1 1
-
-:::{grid-item}
-:columns: 4
-
-```{image} ./_static/logo-square.svg
-:width: 150px
-```
-:::
-
-:::{grid-item}
-:columns: 8
-:class: sd-fs-3
-
-A Sphinx theme with a clean design, support for interactive content, and a modern book-like look and feel.
-:::
-
-::::
-
-
-
-## Table of Contents
 
 ```{toctree}
-:maxdepth: 2
-:caption: Documents
+:hidden:
+:caption: 📚 Guides
 
-authors
-contributing
-installation
-usage
-fullask_rest_framework
+installation.rst
+usage.rst
+```
+
+```{toctree}
+:hidden:
+:caption: 🧑🏻‍🤝‍🧑🏻 Contributing
+
+contributing.rst
+```
+
+```{toctree}
+:hidden:
+:caption: ✏️ Authors
+
+authors.rst
+```
+
+```{toctree}
+:hidden:
+:caption: 📖 API Reference
+
+apidocs/index.rst
 ```
