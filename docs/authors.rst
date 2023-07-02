@@ -5,7 +5,7 @@ Authors
 Development Lead
 ----------------
 
-* tgoddessana <twicegoddessana1229@gmail.com>
+* tgoddessana <https://github.com/TGoddessana>
 
 Contributors
 ------------

@@ -81,12 +81,12 @@ install the requirements for development.
     $ pip install -r requirements_dev.txt
 
 Python code style guide
---------------
+-----------------------
 
 python code of fullask_rest_framework are formatted with `black` and `isort.`
 
 
 JavaScript code style guide
---------------
+---------------------------
 
 JavaScript code of fullask_rest_framework are formatted with `ESlint`.
