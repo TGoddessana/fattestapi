@@ -1,9 +1,7 @@
 from dataclasses import dataclass
 from typing import Generic, List, Optional, TypeVar
 
-from fullask_rest_framework.entities.base_entity import BaseEntity
-
-T = TypeVar("T", bound=BaseEntity)
+T = TypeVar("T")
 
 
 @dataclass
