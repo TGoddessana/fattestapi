@@ -1,19 +1,19 @@
 from abc import ABC, abstractmethod
-from functools import wraps
-from typing import Generic, List, Optional, Type
+from typing import Generic, List, Optional, Union
 
 from flask_marshmallow.sqla import SQLAlchemyAutoSchema  # type: ignore[import]
+from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy.query import Query
 from sqlalchemy import inspect, select
 
-from fullask_rest_framework.repositories.base import T
-from fullask_rest_framework.repositories.crud import CRUDRepositoryABC
 from fullask_rest_framework.httptypes.filtering import FilteringRequest
 from fullask_rest_framework.httptypes.pagination import (
     PaginationRequest,
     PaginationResponse,
 )
 from fullask_rest_framework.httptypes.sorting import SortingRequest
+from fullask_rest_framework.repositories.base import T
+from fullask_rest_framework.repositories.crud import CRUDRepositoryABC
 
 
 class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
@@ -22,8 +22,9 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
     this implementation has dependency with flask-sqlalchemy's SQLAlchemy object.
     """
 
-    def __init__(self, db):
+    def __init__(self, db: SQLAlchemy):
         self.db = db
+        self._model = self.get_model()
 
     @abstractmethod
     def get_model(self):
@@ -43,88 +44,75 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
         return saved_entities
 
     def read_by_id(self, id: int) -> Optional[T]:
-        query_result = self.db.session.get(self.get_model(), id)
+        query_result = self.db.session.get(self._model, id)
         return query_result if query_result else None
 
     def is_exists_by_id(self, id) -> bool:
-        return bool(self.db.session.get(self.get_model(), id))
+        return bool(self.db.session.get(self._model, id))
 
     def read_all(
         self,
+        pagination_request: Optional[PaginationRequest] = None,
         sorting_request: Optional[SortingRequest] = None,
         filtering_request: Optional[FilteringRequest] = None,
-    ) -> List[Optional[T]]:
+    ) -> Union[List[Optional[T]] | PaginationResponse[T]]:
         query = self._get_base_query()
         if filtering_request:
             query = self._filtering(query=query, filtering_request=filtering_request)
         if sorting_request:
             query = self._sorting(query=query, sorting_request=sorting_request)
+        if pagination_request:
+            query = query.paginate(
+                page=pagination_request.page,
+                per_page=pagination_request.per_page,
+                error_out=False,
+            )
+            return PaginationResponse(
+                count=query.total,
+                next_page=query.next_num,
+                previous_page=query.prev_num,
+                results=[item for item in query.items],
+            )
         else:
-            # if no pagination request, return all results without pagination.
             return [
                 query_result
-                for query_result in self.db.session.execute(select(self.get_model()))
+                for query_result in self.db.session.execute(select(self._model))
                 .scalars()
                 .all()
             ]
-
-    def read_all_with_pagination(
-        self,
-        pagination_request: PaginationRequest,
-        sorting_request: Optional[SortingRequest] = None,
-        filtering_request: Optional[FilteringRequest] = None,
-    ) -> PaginationResponse[T]:
-        query = self._get_base_query()
-        if filtering_request:
-            query = self._filtering(query=query, filtering_request=filtering_request)
-        if sorting_request:
-            query = self._sorting(query=query, sorting_request=sorting_request)
-        query = query.paginate(
-            page=pagination_request.page,
-            per_page=pagination_request.per_page,
-            error_out=False,
-        )
-        return PaginationResponse(
-            count=query.total,
-            next_page=query.next_num,
-            previous_page=query.prev_num,
-            results=[item for item in query.items],
-        )
 
     def read_all_by_ids(self, ids: List[int]) -> List[Optional[T]]:
         return [self.read_by_id(_id) for _id in ids]
 
     def count(self) -> int:
-        return self.db.session.query(self.get_model()).count()
+        return self.db.session.query(self._model).count()
 
     def delete_by_id(self, id: int) -> None:
-        model_instance = self.db.session.get(self.get_model(), id)
+        model_instance = self.db.session.get(self._model, id)
         if model_instance:
-            self.db.session.delete(self.db.session.get(self.get_model(), id))
+            self.db.session.delete(self.db.session.get(self._model, id))
             self.db.session.commit()
         else:
-            raise ValueError(f"{self.get_model()} with id {id} not found.")
+            raise ValueError(f"{self._model} with id {id} not found.")
 
     def delete(self, entity) -> None:
-        model_instance = self.db.session.get(self.get_model(), entity.id)
+        model_instance = self.db.session.get(self._model, entity.id)
         if not model_instance:
             raise ValueError(
-                f"{self.get_model()} with entity {entity} not found.\n"
+                f"{self._model} with entity {entity} not found.\n"
                 f"make sure the entity instance is stored in database."
             )
         self.db.session.delete(model_instance)
         self.db.session.commit()
 
     def delete_all_by_ids(self, ids: List[int]) -> None:
-        self.db.session.query(self.get_model()).filter(
-            self.get_model().id.in_(ids)
-        ).delete()
+        self.db.session.query(self._model).filter(self._model.id.in_(ids)).delete()
 
     def delete_all(self) -> None:
-        self.get_model().query.delete()
+        self._model.query.delete()
 
     def _get_base_query(self) -> Query:
-        return self.db.session.query(self.get_model())
+        return self.db.session.query(self._model)
 
     def _filtering(self, query: Query, filtering_request: FilteringRequest) -> Query:
         """
@@ -132,31 +120,13 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
         this is implementation of `or` condition.
         """
         for field, word in vars(filtering_request).items():
-            query = query.filter(getattr(self.get_model(), field).ilike(f"%{word}%"))
+            query = query.filter(getattr(self._model, field).ilike(f"%{word}%"))
         return query
 
     def _sorting(self, query: Query, sorting_request: SortingRequest) -> Query:
         for field, direction in vars(sorting_request).items():
             if direction == "asc":
-                query = query.order_by(getattr(self.get_model(), field).asc())
+                query = query.order_by(getattr(self._model, field).asc())
             elif direction == "desc":
-                query = query.order_by(getattr(self.get_model(), field).desc())
+                query = query.order_by(getattr(self._model, field).desc())
         return query
-
-
-def read_by_fields(func):
-    @wraps(func)
-    def wrapper(self, *args, **kwargs):
-        field_name = func.__name__[len("read_by_") :]
-        if field_name in kwargs:
-            field_value = kwargs[field_name]
-        else:
-            if len(args) < 1:
-                raise ValueError(f"{field_name} argument is missing")
-            field_value = args[0]
-        query_result = (
-            self.get_model().query.filter_by(**{field_name: field_value}).first()
-        )
-        return query_result if query_result else None
-
-    return wrapper

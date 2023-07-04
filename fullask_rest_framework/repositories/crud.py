@@ -64,19 +64,6 @@ class CRUDRepositoryABC(BaseRepository, ABC, Generic[T]):
         pass
 
     @abstractmethod
-    def read_all_with_pagination(
-        self,
-        pagination_request: PaginationRequest,
-        sorting_request: SortingRequest,
-        filtering_request: FilteringRequest,
-    ) -> PaginationResponse[T]:
-        """
-        Read all entities with pagination.
-        if no entities are found, return empty list.
-        """
-        pass
-
-    @abstractmethod
     def read_all_by_ids(self, ids: List[int]) -> List[Optional[T]]:
         """
         Read all entities with given ids.
