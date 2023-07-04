@@ -8,10 +8,12 @@ from sqlalchemy import inspect, select
 
 from fullask_rest_framework.repositories.base import T
 from fullask_rest_framework.repositories.crud import CRUDRepositoryABC
-from fullask_rest_framework.vo.filtering import FilteringRequest
-from fullask_rest_framework.vo.pagination import (PaginationRequest,
-                                                  PaginationResponse)
-from fullask_rest_framework.vo.sorting import SortingRequest
+from fullask_rest_framework.httptypes.filtering import FilteringRequest
+from fullask_rest_framework.httptypes.pagination import (
+    PaginationRequest,
+    PaginationResponse,
+)
+from fullask_rest_framework.httptypes.sorting import SortingRequest
 
 
 class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
