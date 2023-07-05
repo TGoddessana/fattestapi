@@ -119,10 +119,7 @@ class BaseApplicationFactory:
         with dependency_injector's DynamicContainer.
         """
         if not cls.MICRO_APP_CONFIG:
-            return warnings.warn(
-                "No routing is currently set for the application, "
-                "please set it via MICRO_APP_CONFIG."
-            )
+            return
         for micro_app_information in cls.MICRO_APP_CONFIG:
             for app_package_string, url_prefix in micro_app_information.items():
                 micro_app = next(
