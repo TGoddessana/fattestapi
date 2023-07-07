@@ -4,7 +4,7 @@ from typing import Generic, List, Optional, Union
 from flask_marshmallow.sqla import SQLAlchemyAutoSchema  # type: ignore[import]
 from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy.query import Query
-from sqlalchemy import inspect, select
+from sqlalchemy import select
 
 from fullask_rest_framework.httptypes.filtering import FilteringRequest
 from fullask_rest_framework.httptypes.pagination import (
@@ -23,8 +23,8 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
     """
 
     def __init__(self, db: SQLAlchemy):
-        self.db = db
-        self._model = self.get_model()
+        self.db: SQLAlchemy = db
+        self._model: SQLAlchemy.Model = self.get_model()
 
     @abstractmethod
     def get_model(self):
@@ -32,8 +32,7 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
 
     def save(self, entity: T) -> T:
         self.db.session.add(entity)
-        self.db.session.commit()
-        self.db.session.refresh(entity)
+        self.db.session.flush()
         return entity
 
     def save_all(self, entities: List[T]) -> List[T]:
@@ -90,8 +89,7 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
     def delete_by_id(self, id: int) -> None:
         model_instance = self.db.session.get(self._model, id)
         if model_instance:
-            self.db.session.delete(self.db.session.get(self._model, id))
-            self.db.session.commit()
+            self.db.session.delete(model_instance)
         else:
             raise ValueError(f"{self._model} with id {id} not found.")
 
@@ -103,7 +101,7 @@ class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):
                 f"make sure the entity instance is stored in database."
             )
         self.db.session.delete(model_instance)
-        self.db.session.commit()
+        self.db.session.flush()
 
     def delete_all_by_ids(self, ids: List[int]) -> None:
         self.db.session.query(self._model).filter(self._model.id.in_(ids)).delete()
