@@ -34,6 +34,7 @@ def test_app():
     test_app = Flask("test_app")
     test_app.config["TESTING"] = True
     test_app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+    # test_app.config["SQLALCHEMY_ECHO"] = True
     db.init_app(test_app)
 
     with test_app.app_context():
@@ -41,6 +42,8 @@ def test_app():
         db.create_all()
 
     yield test_app
+    with test_app.app_context():
+        db.drop_all()
 
 
 # ##################
@@ -71,6 +74,7 @@ def test_get_id_and_save_success(test_app, user_repository):
         user_fullask = user_repository.read_by_id(1)
         user_fullask.name = "mr_django"
         user_repository.save(user_fullask)
+        assert UserModel.query.count() == 1
 
 
 def test_save_all_success_and_return_entities(test_app, user_repository):
@@ -186,9 +190,7 @@ def test_delete_all_by_ids_should_success(test_app, user_repository):
         db.session.add(UserModel(name="mr_fastapi"))  # id should be 3
         db.session.add(UserModel(name="mr_spring"))  # id should be 4
         db.session.commit()
-
         user_repository.delete_all_by_ids([1, 3, 4])
-
         assert db.session.query(UserModel).count() == 1
 
 
