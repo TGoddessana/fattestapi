@@ -29,7 +29,6 @@ dependencies = [
     "flask-migrate",
     "flask-smorest",
     "flask-cors",
-    "python-dotenv",
     "dependency-injector",
     "marshmallow",
     "marshmallow-sqlalchemy",
@@ -80,7 +79,7 @@ isort = "^5.12.0"
 wheel = "^0.40.0"
 twine = "^4.0.2"
 pre-commit = "^3.3.2"
-bumpversion = "^0.7.0"
+bumpversion = "*"
 flit = "^3.9.0"
 
 [tool.poetry.group.test.dependencies]
