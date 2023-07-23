@@ -6,14 +6,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy.query import Query
 from sqlalchemy import select
 
-from fullask_rest_framework.httptypes.filtering import FilteringRequest
-from fullask_rest_framework.httptypes.pagination import (
+from fattestapi.httptypes.filtering import FilteringRequest
+from fattestapi.httptypes.pagination import (
     PaginationRequest,
     PaginationResponse,
 )
-from fullask_rest_framework.httptypes.sorting import SortingRequest
-from fullask_rest_framework.repositories.base import T
-from fullask_rest_framework.repositories.crud import CRUDRepositoryABC
+from fattestapi.httptypes.sorting import SortingRequest
+from fattestapi.repositories.base import T
+from fattestapi.repositories.crud import CRUDRepositoryABC
 
 
 class SQLAlchemyFullRepository(CRUDRepositoryABC, ABC, Generic[T]):

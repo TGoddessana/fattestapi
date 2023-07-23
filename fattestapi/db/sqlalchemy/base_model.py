@@ -1,6 +1,6 @@
 from sqlalchemy import Sequence
 
-from fullask_rest_framework.factory.extensions import db
+from fattestapi.factory.extensions import db
 
 
 class BaseModel(db.Model):  # type: ignore[name-defined]

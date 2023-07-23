@@ -1,8 +1,8 @@
 from flask_marshmallow import Schema  # type: ignore[import]
 from marshmallow import post_load
 
-from fullask_rest_framework.httptypes.sorting import SortingRequest
-from fullask_rest_framework.schemas import fields
+from fattestapi.httptypes.sorting import SortingRequest
+from fattestapi.schemas import fields
 
 
 class SortingRequestSchema(Schema):

@@ -1,4 +1,4 @@
-"""Top-level package for fullask_rest_framework."""
+"""Top-level package for FattestAPI."""
 
 __author__ = """tgoddessana"""
 __email__ = "twicegoddessana1229@gmail.com"

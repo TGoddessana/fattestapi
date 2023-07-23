@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Generic, List, Optional
 
-from fullask_rest_framework.httptypes import FilteringRequest, SortingRequest
-from fullask_rest_framework.repositories.base import BaseRepository, T
+from fattestapi.httptypes import FilteringRequest, SortingRequest
+from fattestapi.repositories.base import BaseRepository, T
 
 
 class CRUDRepositoryABC(BaseRepository, ABC, Generic[T]):

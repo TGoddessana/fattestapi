@@ -2,13 +2,13 @@ import pytest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from fullask_rest_framework.httptypes import (
+from fattestapi.httptypes import (
     FilteringRequest,
     PaginationRequest,
     PaginationResponse,
     SortingRequest,
 )
-from fullask_rest_framework.repositories.sqlalchemy.sqlalchemy import (
+from fattestapi.repositories.sqlalchemy.sqlalchemy import (
     SQLAlchemyFullRepository,
 )
 

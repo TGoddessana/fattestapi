@@ -1,6 +1,6 @@
 from marshmallow import Schema, post_load
 
-from fullask_rest_framework.httptypes.filtering import FilteringRequest
+from fattestapi.httptypes.filtering import FilteringRequest
 
 
 class BaseFilteringSchema(Schema):

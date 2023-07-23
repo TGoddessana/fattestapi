@@ -8,15 +8,14 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_smorest import Api
 
-from fullask_rest_framework.contrib.admin.views import admin_bp
-from fullask_rest_framework.factory.exceptions import ConfigNotSetError
-from fullask_rest_framework.factory.microapp import MicroApp
+from fattestapi.factory.exceptions import ConfigNotSetError
+from fattestapi.factory.microapp import MicroApp
 
 
 class BaseApplicationFactory:
     FLASK_APP_NAME: Optional[str] = None
     CONFIG_MAPPING: Optional[dict[str, Any]] = None
-    EXTENSION_MODULE: str = "fullask_rest_framework.factory.extensions"
+    EXTENSION_MODULE: str = "fattestapifattestapi.factory.extensions"
     MICRO_APP_CONFIG: Optional[List[Dict[str, str]]] = None
     DOTENV_SETTINGS: Optional[dict] = None
 

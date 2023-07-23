@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from fullask_rest_framework.factory.extensions import db
+from fattestapi.factory.extensions import db
 
 
 class BaseMixin:

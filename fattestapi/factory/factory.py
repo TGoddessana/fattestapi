@@ -11,8 +11,8 @@ from dependency_injector.wiring import Provide, inject
 from flask import Blueprint, Flask
 from werkzeug.exceptions import HTTPException
 
-from fullask_rest_framework.factory.exceptions import ConfigNotSetError, ExtensionError
-from fullask_rest_framework.factory.extensions import (
+from fattestapi.factory.exceptions import ConfigNotSetError, ExtensionError
+from fattestapi.factory.extensions import (
     cors,
     db,
     jwt,
