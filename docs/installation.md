@@ -11,7 +11,7 @@ title: Installation
 To install fullask-rest-framework, run this command in your terminal:
 
 ```shell
-pip install fullask-rest-framework
+pip install fattestAPI
 ```
 
 This is the preferred method to install fullask-rest-framework, as it will always install the most recent stable
@@ -32,6 +32,6 @@ the [GitHub repository](https://github.com/tgoddessana/fullask-rest-framework).
 You can either clone the public repository:
 
 ```shell
-git clone git://github.com/tgoddessana/fullask-rest-framework
+git clone git://github.com/tgoddessana/fattestapi
 ```
 
