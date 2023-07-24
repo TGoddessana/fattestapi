@@ -23,7 +23,7 @@ extensions = [
 source_suffix = [".rst", ".md"]
 
 # The master toctree document.
-master_doc = "src/index"
+master_doc = "index"
 
 # General information about the project.
 project = "FattestAPI"
@@ -51,9 +51,9 @@ todo_include_todos = False
 # -- Options for HTML output -------------------------------------------
 html_theme = "sphinx_book_theme"
 
-html_logo = "src/_static/full_logo.svg"
+html_logo = "_static/full_logo.svg"
 
-html_favicon = "src/_static/simple_logo.svg"
+html_favicon = "_static/simple_logo.svg"
 
 html_theme_options = {
     # "logo": {
@@ -78,7 +78,7 @@ html_theme_options = {
     "home_page_in_toc": True,
 }
 
-html_static_path = ["src/_static"]
+html_static_path = ["_static"]
 
 # autodoc2 settings.
 autodoc2_packages = [
