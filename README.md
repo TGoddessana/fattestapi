@@ -14,16 +14,16 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/tgoddessana/flask-rest-framework">
-    <img src="docs/_static/frf-logo.png" style="width:75%";>
+  <a href="https://github.com/tgoddessana/FattestAPI">
+    <img src="docs/_static/full_logo.svg" style="width:75%";>
   </a>
 
-<h3 align="center">Fullask-REST-Framework</h3>
+<h3 align="center">FattestAPI</h3>
 
   <p align="center">
-    A fully-supported flask extension to build REST API.
+    The fattest way to develop REST APIs. based on FastAPI.
     <br />
-    <a href="https://tgoddessana.github.io/fullask-rest-framework/"><strong>Explore the docs »</strong></a>
+    <a href="https://tgoddessana.github.io/FattestAPI/"><strong>Explore the docs »</strong></a>
     <br />
   </p>
 </div>
@@ -33,40 +33,25 @@
 
 <br/>
 
-## About Fullask-REST-Framework
+## About the FattestAPI, what is it and why was it created?
 
 ---
 
-Fullask REST Framework is a framework that makes it easier and faster to build REST APIs.
+### Short story
 
-## Getting Started
+FattestAPI is a framework built on top of two giants: FastAPI and SQLAlchemy.
+It was developed with the goal of building the fattest way to write REST APIs.
 
----
+### Little longer story
 
-### Installation
+Originally, I was a big fan of Flask - in fact, the framework was called Fullask REST Framework before it was renamed.
+It was a project that was developed with the intention of reducing duplication in projects by putting enough of the
+idiomatic code provided by Django and the Django REST Framework on top of a micro-framework called Flask.
 
-install using pip command.
+However, after struggling with API documentation, I found a great framework called FastAPI and decided to migrate to it.
 
-   ```
-   pip install fullask-rest-framework
-   ```
-
-<!---------------------------------------------------------------------------------------------->
-
-<br/>
-
-## Usage
-
----
-
-
-
-_For more examples, please refer to the [Documentation](https://tgoddessana.github.io/fullask-rest-framework/)_
-
-
-
-
-<!---------------------------------------------------------------------------------------------->
+The idiom code was heavily inspired by one of my favorite frameworks, the Django REST Framework, and the Repository and
+Service code was heavily inspired by Spring Data JPA.
 
 
 <br/>
@@ -89,7 +74,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 - Email: twicegoddessana1229@gmail.com
 - Project
-  Link: [https://github.com/tgoddessana/flask-rest-framework](https://github.com/tgoddessana/flask-rest-framework)
+  Link: [https://github.com/tgoddessana/FattestAPI](https://github.com/tgoddessana/FattestAPI)
 
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
@@ -97,25 +82,25 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/tgoddessana/flask-rest-framework.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/tgoddessana/FattestAPI.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/tgoddessana/flask-rest-framework/graphs/contributors
+[contributors-url]: https://github.com/tgoddessana/FattestAPI/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/tgoddessana/flask-rest-framework.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/tgoddessana/FattestAPI.svg?style=for-the-badge
 
-[forks-url]: https://github.com/tgoddessana/flask-rest-framework/network/members
+[forks-url]: https://github.com/tgoddessana/FattestAPI/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/tgoddessana/flask-rest-framework.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/tgoddessana/FattestAPI.svg?style=for-the-badge
 
-[stars-url]: https://github.com/tgoddessana/flask-rest-framework/stargazers
+[stars-url]: https://github.com/tgoddessana/FattestAPI/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/tgoddessana/flask-rest-framework.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/tgoddessana/FattestAPI.svg?style=for-the-badge
 
-[issues-url]: https://github.com/tgoddessana/flask-rest-framework/issues
+[issues-url]: https://github.com/tgoddessana/FattestAPI/issues
 
-[license-shield]: https://img.shields.io/github/license/tgoddessana/flask-rest-framework.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/tgoddessana/FattestAPI.svg?style=for-the-badge
 
-[license-url]: https://github.com/tgoddessana/flask-rest-framework/blob/master/LICENSE.txt
+[license-url]: https://github.com/tgoddessana/FattestAPI/blob/master/LICENSE.txt
 
 [product-screenshot]: images/screenshot.png
 
