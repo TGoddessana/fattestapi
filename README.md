@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/tgoddessana/FattestAPI">
-    <img src="docs/_static/full_logo.svg" style="width:75%";>
+    <img src="docs/src/_static/full_logo.svg" style="width:75%";>
   </a>
 
 <h3 align="center">FattestAPI</h3>
@@ -33,26 +33,41 @@
 
 <br/>
 
-## About the FattestAPI, what is it and why was it created?
+## About FattestAPI
 
----
+## What is it and why was it developed?
 
-### Short story
+The FattestAPI package is built on top of the excellent Python web framework, FastAPI, and the widely-used
+object-relational mapper, SQLAlchemy. It was developed with the goal of providing the "fattest way" to build REST APIs
+by offering commonly used boilerplate code.
 
-FattestAPI is a framework built on top of two giants: FastAPI and SQLAlchemy.
-It was developed with the goal of building the fattest way to write REST APIs.
+In fact, I was an avid fan of the Flask web framework, and I still love it. In fact, the initial name of this package
+was Fullask-REST-framework, and it was developed with the intention of extending the micro web framework Flask with
+batteries included.
 
-### Little longer story
+However, while developing REST APIs using Flask, I encountered difficulties in documenting the APIs using Swagger. Of
+course, you can achieve documentation using excellent frameworks like:
 
-Originally, I was a big fan of Flask - in fact, the framework was called Fullask REST Framework before it was renamed.
-It was a project that was developed with the intention of reducing duplication in projects by putting enough of the
-idiomatic code provided by Django and the Django REST Framework on top of a micro-framework called Flask.
+- Flask-Smorest, which supports OpenAPI 3.0 with Flask and marshmallow
+- Flask-RESTx, which supports OpenAPI 3.0 also
 
-However, after struggling with API documentation, I found a great framework called FastAPI and decided to migrate to it.
+And it's **definitely not**  that these packages are inadequate. But I wanted a framework that takes an even better
+approach
+to documentation, and that's when I came across the fantastic package, FastAPI. So, I decided to migrate the existing
+framework based on FastAPI.
+It was inspired by the excellent and widely-used web frameworks such as Django and Django REST Framework, Spring and
+Spring Data Projects, and NestJS.
 
-The idiom code was heavily inspired by one of my favorite frameworks, the Django REST Framework, and the Repository and
-Service code was heavily inspired by Spring Data JPA.
+## Goals of FattestAPI
 
+FattestAPI aims to achieve the following:
+
+* Provide pre-built boilerplate code for commonly performed CRUD (Create, Read, Update, Delete) operations, making it
+  easy for developers to handle them.
+* Support Layered Architecture by officially supporting Controller, Service, and Repository, making it easier for
+  developers to achieve separation of concerns.
+* Support an authentication system.
+* Provide commonly used utility codes.
 
 <br/>
 

@@ -23,7 +23,7 @@ extensions = [
 source_suffix = [".rst", ".md"]
 
 # The master toctree document.
-master_doc = "index"
+master_doc = "src/index"
 
 # General information about the project.
 project = "FattestAPI"
@@ -51,7 +51,9 @@ todo_include_todos = False
 # -- Options for HTML output -------------------------------------------
 html_theme = "sphinx_book_theme"
 
-html_logo = "_static/"
+html_logo = "src/_static/full_logo.svg"
+
+html_favicon = "src/_static/simple_logo.svg"
 
 html_theme_options = {
     # "logo": {
@@ -60,23 +62,23 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub repository",
-            "url": "https://github.com/TGoddessana/fullask-rest-framework",
+            "url": "https://github.com/TGoddessana/fattestapi",
             "icon": "fa-brands fa-square-github",
             "type": "fontawesome",
         },
         {
             "name": "PyPI",
-            "url": "https://pypi.org/project/fullask-rest-framework/",
-            "icon": "https://img.shields.io/pypi/dw/fullask-rest-framework",
+            "url": "https://pypi.org/project/fattestapi/",
+            "icon": "https://img.shields.io/pypi/dw/fattestapi",
             "type": "url",
         },
     ],
-    "repository_url": "https://github.com/TGoddessana/fullask-rest-framework/",
+    "repository_url": "https://github.com/TGoddessana/fattestapi/",
     "use_repository_button": True,
     "home_page_in_toc": True,
 }
 
-html_static_path = ["_static"]
+html_static_path = ["src/_static"]
 
 # autodoc2 settings.
 autodoc2_packages = [
@@ -84,7 +86,7 @@ autodoc2_packages = [
 ]
 
 # -- Options for HTMLHelp output ---------------------------------------
-htmlhelp_basename = "fullask_rest_frameworkdoc"
+htmlhelp_basename = "fattestapidoc"
 
 # -- Options for manual page output ------------------------------------
 man_pages = [
