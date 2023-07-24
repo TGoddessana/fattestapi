@@ -3,13 +3,13 @@ requires = ["flit_core<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "fullask-rest-framework"
-description = "A fully-supported flask extension to build REST API."
+name = "FattestAPI"
+description = "The fattest way to develop REST APIs. based on FastAPI."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9"
 authors = [
-    { name = "tgoddessana", email = "twicegoddessana1229@gmail.com" },
+    { name = "tgoddessana", email = "twicegoddessana1229@gmail.com" }
 ]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -22,28 +22,20 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
-    "Flask",
-    "flask-jwt-extended",
-    "flask-sqlalchemy",
-    "flask-marshmallow",
-    "flask-migrate",
-    "flask-smorest",
-    "flask-cors",
-    "dependency-injector",
-    "marshmallow",
-    "marshmallow-sqlalchemy",
+    "fastapi[all]",
+    "alembic",
 ]
 dynamic = ["version"]
 
 [project.scripts]
-fullask-manager = "fullask_rest_framework.cli:main"
+fullask-manager = "fattestapi.cli:main"
 
 [tool.flit.module]
-name = "fullask_rest_framework"
+name = "fattestapi"
 
 [tool.flit.sdist]
 include = [
-    "fullask_rest_framework/",
+    "fattestapi/",
     "README.md",
 ]
 exclude = [
@@ -53,25 +45,16 @@ exclude = [
 ]
 
 [tool.poetry]
-name = "fullask-rest-framework"
-version = "0.7.1"
-description = ""
+name = "FattestAPI"
+version = "0.1.0"
+description = "The fattest way to develop REST APIs. based on FastAPI."
 authors = ["tgoddessana <twicegoddessana1229@gmail.com>"]
 
 [tool.poetry.dependencies]
 pip = "*"
 python = "^3.11"
-flask = "^2.2.3"
-flask-jwt-extended = "*"
-marshmallow = "^3.19.0"
-marshmallow-sqlalchemy = "^0.29.0"
-flask-sqlalchemy = "^3.0.3"
-flask-marshmallow = "^0.15.0"
-flask-migrate = "^4.0.4"
-flask-smorest = "^0.42.0"
-python-dotenv = "^1.0.0"
-flask-cors = "^4.0.0"
-dependency_injector = "*"
+fastapi = { extras = ["all"], version = "^0.100.0" }
+sqlalchemy = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
@@ -89,8 +72,6 @@ flake8 = "^6.0.0"
 tox = "*"
 mypy = "*"
 coverage = "*"
-types-Flask-Cors = "*"
-types-Flask-Migrate = "*"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "*"
