@@ -1,40 +1,40 @@
-name: github action tag release
-
-on:
-    push:
-        branches:
-            - main
-
-jobs:
-    pypi_release:
-        name: PyPI release
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v3.1.0
-            -   uses: actions/setup-python@v4.3.0
-            -   run: python -m pip install --upgrade pip twine
-            -   run: pip install flit
-            -   run: flit build
-            -   run: twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
-
-    setup-build-deploy:
-        name: Setup, Build, and Deploy
-        runs-on: ubuntu-latest
-        permissions:
-            packages: write
-            contents: write
-            id-token: write
-
-        steps:
-            -   name: Bump version and push tag
-                id: tag_version
-                uses: mathieudutour/github-tag-action@v6.1
-                with:
-                    github_token: ${{ secrets.GITHUB_TOKEN }}
-
-            -   name: Create a GitHub release
-                uses: ncipollo/release-action@v1
-                with:
-                    tag: ${{ steps.tag_version.outputs.new_tag }}
-                    name: Release ${{ steps.tag_version.outputs.new_tag }}
-                    body: ${{ steps.tag_version.outputs.changelog }}
+#name: github action tag release
+#
+#on:
+#    push:
+#        branches:
+#            - main
+#
+#jobs:
+#    pypi_release:
+#        name: PyPI release
+#        runs-on: ubuntu-latest
+#        steps:
+#            -   uses: actions/checkout@v3.1.0
+#            -   uses: actions/setup-python@v4.3.0
+#            -   run: python -m pip install --upgrade pip twine
+#            -   run: pip install flit
+#            -   run: flit build
+#            -   run: twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
+#
+#    setup-build-deploy:
+#        name: Setup, Build, and Deploy
+#        runs-on: ubuntu-latest
+#        permissions:
+#            packages: write
+#            contents: write
+#            id-token: write
+#
+#        steps:
+#            -   name: Bump version and push tag
+#                id: tag_version
+#                uses: mathieudutour/github-tag-action@v6.1
+#                with:
+#                    github_token: ${{ secrets.GITHUB_TOKEN }}
+#
+#            -   name: Create a GitHub release
+#                uses: ncipollo/release-action@v1
+#                with:
+#                    tag: ${{ steps.tag_version.outputs.new_tag }}
+#                    name: Release ${{ steps.tag_version.outputs.new_tag }}
+#                    body: ${{ steps.tag_version.outputs.changelog }}
