@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/tgoddessana/FattestAPI">
-    <img src="docs/src/_static/full_logo.svg" style="width:75%";>
+    <img src="docs/_static/full_logo.svg" style="width:75%";>
   </a>
 
 <h3 align="center">FattestAPI</h3>
