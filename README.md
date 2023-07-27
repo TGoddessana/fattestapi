@@ -23,7 +23,7 @@
   <p align="center">
     The fattest way to develop REST APIs. based on FastAPI.
     <br />
-    <a href="https://tgoddessana.github.io/FattestAPI/"><strong>Explore the docs »</strong></a>
+    <a href="https://tgoddessana.github.io/fattestapi/"><strong>Explore the docs »</strong></a>
     <br />
   </p>
 </div>
